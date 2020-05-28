@@ -1,0 +1,7 @@
+class ColliderManager {
+  
+  
+  ColliderManager() {
+    
+  }
+}
