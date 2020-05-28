@@ -7,12 +7,17 @@ Window window;
 Painting painting;
 Fireplace fireplace;
 Garden garden;
+Animal unicorn;
+Animal dog;
 
 ColliderManager colliderMng;
 Collider cl1, cl2, cl3, cl4;
 
+int scaleFactor;
+
 void setup() {
   size(800, 800, P3D);
+  scaleFactor = 100;
 
   cam = new Camera();
 
@@ -23,19 +28,10 @@ void setup() {
   painting = new Painting();
   fireplace = new Fireplace();
   garden = new Garden();
+  unicorn = new Animal("unicorn.png", 1, 1.5);
+  dog = new Animal("lab.png", 1, 0.2);
   
   colliderMng = new ColliderManager();
-  cl1 = new Collider("Front fences", 0, 0, -500, 500, 50, 100);
-  colliderMng.pushCollider(cl1);
-  
-  cl2 = new Collider("Back Fences", 0, 0, 500, 500, 50, 100);
-  colliderMng.pushCollider(cl2);
-  
-  cl3 = new Collider("Left Fences", -500, 0, 0, 100, 50, 500);
-  colliderMng.pushCollider(cl3);
-  
-  cl4 = new Collider("Right Fences", 500, 0, 0, 100, 50, 500);
-  colliderMng.pushCollider(cl4);
 }
 
 void draw() {
@@ -45,7 +41,7 @@ void draw() {
   cam.process();
 
   pushMatrix();
-  scale(100);
+  scale(scaleFactor);
 
   wall.drawWalls();
   door.drawDoors();
@@ -54,6 +50,8 @@ void draw() {
   painting.drawPaintings();
   fireplace.drawFireplace();
   garden.drawGarden();
+  unicorn.drawAnimal();
+  dog.drawAnimal();
 
   popMatrix();
 }

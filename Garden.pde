@@ -9,7 +9,7 @@ class Garden {
     grassImg = loadImage("grass.jpg");
     fenceImg = loadImage("wood.jpg");
     
-    gardenWidth = 10;
+    gardenWidth = 15;
     fenceWidth = 0.5;
     fenceHeight = 0.25;
     fenceCountOnEachEdge = 8;
@@ -44,11 +44,12 @@ class Garden {
     
     beginShape(QUADS);
     texture(grassImg);
+    textureWrap(REPEAT);
     
     vertex(-gardenWidth / 2, 1.001, -gardenWidth / 2, 0, 0);
-    vertex(gardenWidth / 2, 1.001, -gardenWidth / 2, w, 0);
-    vertex(gardenWidth / 2, 1.001, gardenWidth / 2, w, h);
-    vertex(-gardenWidth / 2, 1.001, gardenWidth / 2, 0, h);
+    vertex(gardenWidth / 2, 1.001, -gardenWidth / 2, 2 * w, 0);
+    vertex(gardenWidth / 2, 1.001, gardenWidth / 2, 2* w, 2 * h);
+    vertex(-gardenWidth / 2, 1.001, gardenWidth / 2, 0, 2 * h);
     
     endShape();
   }
