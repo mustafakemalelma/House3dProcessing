@@ -20,10 +20,16 @@ class Camera {
     dir.normalize();
 
     if (keyPressed) {
-      if (keyCode == UP)
-        pos.add(PVector.mult(dir, speed));
-      if (keyCode == DOWN)
-        pos.add(PVector.mult(dir, -speed));
+      if (keyCode == UP) {
+        PVector nextPos = PVector.add(pos, PVector.mult(dir, speed));
+        if(!colliderMng.checkCollision(nextPos))
+          pos.add(PVector.mult(dir, speed));
+      }
+      if (keyCode == DOWN) {
+        PVector nextPos = PVector.add(pos, PVector.mult(dir, -speed));
+        if(!colliderMng.checkCollision(nextPos))
+          pos.add(PVector.mult(dir, -speed));
+      }
     }
 
     center = PVector.add(PVector.mult(dir, 300), pos);

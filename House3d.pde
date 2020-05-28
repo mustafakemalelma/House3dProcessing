@@ -8,6 +8,9 @@ Painting painting;
 Fireplace fireplace;
 Garden garden;
 
+ColliderManager colliderMng;
+Collider cl1, cl2, cl3, cl4;
+
 void setup() {
   size(800, 800, P3D);
 
@@ -20,6 +23,19 @@ void setup() {
   painting = new Painting();
   fireplace = new Fireplace();
   garden = new Garden();
+  
+  colliderMng = new ColliderManager();
+  cl1 = new Collider("Front fences", 0, 0, -500, 500, 50, 100);
+  colliderMng.pushCollider(cl1);
+  
+  cl2 = new Collider("Back Fences", 0, 0, 500, 500, 50, 100);
+  colliderMng.pushCollider(cl2);
+  
+  cl3 = new Collider("Left Fences", -500, 0, 0, 100, 50, 500);
+  colliderMng.pushCollider(cl3);
+  
+  cl4 = new Collider("Right Fences", 500, 0, 0, 100, 50, 500);
+  colliderMng.pushCollider(cl4);
 }
 
 void draw() {
