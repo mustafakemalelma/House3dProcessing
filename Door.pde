@@ -12,15 +12,15 @@ class Door {
     beginShape(QUADS);
     texture(doorImg);
 
-    vertex(-0.5, -0.7, 1.0001, 0, 0);
-    vertex( 0.5, -0.7, 1.0001, w, 0);
-    vertex( 0.5, 1, 1.0001, w, h);
-    vertex(-0.5, 1, 1.0001, 0, h);
+    vertex(-DOOR_WIDTH, -DOOR_HEIGHT, HOUSE_WIDTH + 0.001, 0, 0);
+    vertex( DOOR_WIDTH, -DOOR_HEIGHT, HOUSE_WIDTH + 0.001, w, 0);
+    vertex( DOOR_WIDTH, 0, HOUSE_WIDTH + 0.001, w, h);
+    vertex(-DOOR_WIDTH, 0, HOUSE_WIDTH + 0.001, 0, h);
 
-    vertex(-0.5, -0.7, 0.9999, 0, 0);
-    vertex( 0.5, -0.7, 0.9999, w, 0);
-    vertex( 0.5, 1, 0.9999, w, h);
-    vertex(-0.5, 1, 0.9999, 0, h);
+    vertex(-DOOR_WIDTH, -DOOR_HEIGHT, HOUSE_WIDTH - 0.001, 0, 0);
+    vertex( DOOR_WIDTH, -DOOR_HEIGHT, HOUSE_WIDTH - 0.001, w, 0);
+    vertex( DOOR_WIDTH, 0, HOUSE_WIDTH - 0.001, w, h);
+    vertex(-DOOR_WIDTH, 0, HOUSE_WIDTH - 0.001, 0, h);
 
     endShape();
   }

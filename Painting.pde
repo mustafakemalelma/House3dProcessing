@@ -7,21 +7,30 @@ class Painting{
   }
 
   void drawPaintings() {
-    getPainting(paintingImg1, 1);
-    getPainting(paintingImg2, -1);
+    pushMatrix();
+    translate(-PAINTING_DISTANCE, 0, 0);
+    getPainting(paintingImg1);
+    popMatrix();
+    
+    pushMatrix();
+    translate(PAINTING_DISTANCE, 0, 0);
+    getPainting(paintingImg2);
+    popMatrix();
   }
   
-  void getPainting(PImage text, int dir) {
+  void getPainting(PImage text) {
     int w = text.width;
     int h = text.height;
     
     beginShape(QUADS);
     texture(text);
     
-    vertex(-0.8 * dir, -0.7, -0.9999, 0, 0);
-    vertex(-0.3 * dir, -0.7, -0.9999, w, 0);
-    vertex(-0.3 * dir, -0.1, -0.9999, w, h);
-    vertex(-0.8 * dir, -0.1, -0.9999, 0, h);
+    float z = -HOUSE_WIDTH + 0.001;
+    float y = -HOUSE_HEIGHT / 2 - 1;
+    vertex(PAINTING_WIDTH, y - PAINTING_HEIGHT, z, 0, 0);
+    vertex(-PAINTING_WIDTH, y - PAINTING_HEIGHT, z, w, 0);
+    vertex(-PAINTING_WIDTH, y + PAINTING_HEIGHT, z, w, h);
+    vertex(PAINTING_WIDTH, y + PAINTING_HEIGHT, z, 0, h);
     
     endShape();
   }

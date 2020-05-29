@@ -3,8 +3,6 @@ class Animal {
   
   float startX, startZ, xSize, ySize;
   int animDir = 1;
-  
-  float halfGardenSize;
 
   Animal(String imgPath, float xSize, float ySize) {
     texture = loadImage(imgPath);
@@ -12,34 +10,31 @@ class Animal {
     this.xSize = xSize;
     this.ySize = ySize;
     
-    halfGardenSize = garden.gardenWidth / 2;
-    getRandomStart();
+    startX = garden.getRandomCoordInGarden();
+    startZ = garden.getRandomCoordInGarden();
   }
 
   void drawAnimal() {
     int w = texture.width;
     int h = texture.height;
 
+    pushMatrix();
+    translate(startX, 0, 0);
+    
     beginShape(QUADS);
     texture(texture);
 
-    vertex(startX, -ySize, startZ, 0, 0);
-    vertex(startX + xSize, -ySize, startZ, w, 0);
-    vertex(startX + xSize, 1, startZ, w, h);
-    vertex(startX, 1, startZ, 0, h);
+    vertex(-xSize, -ySize, startZ, 0, 0);
+    vertex(xSize, -ySize, startZ, w, 0);
+    vertex(xSize, 0, startZ, w, h);
+    vertex(-xSize, 0, startZ, 0, h);
 
     endShape();
     
-    startX += animDir * 0.01;
-    if(startX >= halfGardenSize || startX <= -halfGardenSize)
-      animDir *= -1;
-  }
-  
-  void getRandomStart() {
-    startX = random(-halfGardenSize, halfGardenSize);
-    startX += (startX >= -2 && startX <= 2 ? 2.5 : 0);
+    popMatrix();
     
-    startZ = random(-halfGardenSize, halfGardenSize);
-    startZ += (startZ >= -2 && startZ <= 2 ? 2.5 : 0);
+    startX += animDir * ANIMAL_SPEED;
+    if(startX >= MAX_SPAWNABLE_SIZE || startX <= -MAX_SPAWNABLE_SIZE)
+      animDir *= -1;
   }
 }

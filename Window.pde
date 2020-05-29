@@ -8,26 +8,36 @@ class Window {
   void drawWindow() { 
     int w = windowImg.width;
     int h = windowImg.height;
-    
-    beginShape(QUADS);
-    texture(windowImg);
 
+    pushMatrix();
+    translate(0, 0, WINDOW_DISTANCE);
     getWindows(1, w, h);
     getWindows(-1, w, h);
-
-    endShape();
+    popMatrix();
+    
+    pushMatrix();
+    translate(0, 0, -WINDOW_DISTANCE);
+    getWindows(1, w, h);
+    getWindows(-1, w, h);
+    popMatrix();
   }
-  
+
   void getWindows(int dir, int w, int h)
   {
-    vertex(1.0001 * dir, -0.35, 0.75, 0, 0);
-    vertex(1.0001 * dir, -0.35, 0.05, w, 0);
-    vertex(1.0001 * dir, 0.35, 0.05, w, h);
-    vertex(1.0001 * dir, 0.35, 0.75, 0, h);
+    beginShape(QUADS);
+    texture(windowImg);
+    
+    float halfWall = -HOUSE_HEIGHT / 2;
+    vertex(HOUSE_WIDTH * dir + 0.001, halfWall - WINDOW_SIZE, WINDOW_SIZE, 0, 0);
+    vertex(HOUSE_WIDTH * dir + 0.001, halfWall - WINDOW_SIZE, -WINDOW_SIZE, w, 0);
+    vertex(HOUSE_WIDTH * dir + 0.001, halfWall + WINDOW_SIZE, -WINDOW_SIZE, w, h);
+    vertex(HOUSE_WIDTH * dir + 0.001, halfWall + WINDOW_SIZE, WINDOW_SIZE, 0, h);
 
-    vertex(1.0001 * dir, -0.35, -0.75, 0, 0);
-    vertex(1.0001 * dir, -0.35, -0.05, w, 0);
-    vertex(1.0001 * dir, 0.35, -0.05, w, h);
-    vertex(1.0001 * dir, 0.35, -0.75, 0, h);
+    vertex(HOUSE_WIDTH * dir - 0.001, halfWall - WINDOW_SIZE, WINDOW_SIZE, 0, 0);
+    vertex(HOUSE_WIDTH * dir - 0.001, halfWall - WINDOW_SIZE, -WINDOW_SIZE, w, 0);
+    vertex(HOUSE_WIDTH * dir - 0.001, halfWall + WINDOW_SIZE, -WINDOW_SIZE, w, h);
+    vertex(HOUSE_WIDTH * dir - 0.001, halfWall + WINDOW_SIZE, WINDOW_SIZE, 0, h);
+    
+    endShape();
   }
 }

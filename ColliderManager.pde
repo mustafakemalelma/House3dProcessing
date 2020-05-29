@@ -43,7 +43,7 @@ class ColliderManager {
   ColliderManager() {
     colliders = new ArrayList();
 
-    float gardenSize = scaleFactor * garden.gardenWidth / 2; 
+    float gardenSize = scaleFactor * GARDEN_SIZE / 2; 
 
     Collider cl1 = new Collider("Front fences", 0, 0, -gardenSize, gardenSize, 50, 100);
     colliders.add(cl1);

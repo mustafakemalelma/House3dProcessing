@@ -19,10 +19,11 @@ class Fireplace{
     beginShape(QUADS);
     texture(fireplaceBgImg);
     
-    vertex(-0.5, 0, -0.9999, 0, 0);
-    vertex(0.5, 0, -0.9999, w, 0);
-    vertex(0.5, 1, -0.9999, w, h);
-    vertex(-0.5, 1, -0.9999, 0, h);
+    float z = -HOUSE_WIDTH + 0.001;
+    vertex(-FIREPLACE_WIDTH, -FIREPLACE_HEIGHT, z, 0, 0);
+    vertex(FIREPLACE_WIDTH, -FIREPLACE_HEIGHT, z, w, 0);
+    vertex(FIREPLACE_WIDTH, 0, z, w, h);
+    vertex(-FIREPLACE_WIDTH, 0, z, 0, h);
     
     endShape();
     
