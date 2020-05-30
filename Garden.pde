@@ -3,11 +3,25 @@ class Garden {
   
   float distBetweenFences;
   
+  Collider cl1, cl2, cl3, cl4;
+  
   Garden() {
     grassImg = loadImage("grass.jpg");
     fenceImg = loadImage("wood.jpg");
     
     distBetweenFences = (2 * GARDEN_SIZE - FENCE_COUNT * FENCE_WIDTH) / FENCE_COUNT;
+    
+    cl1 = new Collider("Back Fences", 0, -GARDEN_SIZE, GARDEN_SIZE, 1, 1);
+    colliderMng.addCollider(cl1);
+    
+    cl2 = new Collider("Front Fences", 0, GARDEN_SIZE, GARDEN_SIZE, 1, 1);
+    colliderMng.addCollider(cl2);
+    
+    cl3 = new Collider("Left Fences", -GARDEN_SIZE, 0, 1, 1, GARDEN_SIZE);
+    colliderMng.addCollider(cl3);
+    
+    cl4 = new Collider("Right Fences", GARDEN_SIZE, 0, 1, 1, GARDEN_SIZE);
+    colliderMng.addCollider(cl4);
   }
   
   void drawGarden() {

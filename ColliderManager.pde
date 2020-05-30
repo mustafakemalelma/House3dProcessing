@@ -4,12 +4,15 @@ class Collider {
 
   float xMin, xMax, yMin, yMax, zMin, zMax;
 
-  Collider(String tag, float centerX, float centerY, float centerZ, 
+  Collider(String tag, float centerX, float centerZ, 
     float xSize, float ySize, float zSize) {
     this.tag = tag;
 
-    center = new PVector(centerX, centerY, centerZ);
+    center = new PVector(centerX, CAMERA_Y_POS, centerZ);
+    center.mult(scaleFactor);
+    
     size = new PVector(xSize, ySize, zSize);
+    size.mult(scaleFactor);
 
     xMin = center.x - size.x;
     xMax = center.x + size.x;
@@ -42,20 +45,6 @@ class ColliderManager {
 
   ColliderManager() {
     colliders = new ArrayList();
-
-    float gardenSize = scaleFactor * GARDEN_SIZE / 2; 
-
-    Collider cl1 = new Collider("Front fences", 0, 0, -gardenSize, gardenSize, 50, 100);
-    colliders.add(cl1);
-
-    Collider cl2 = new Collider("Back Fences", 0, 0, gardenSize, gardenSize, 50, 100);
-    colliders.add(cl2);
-
-    Collider cl3 = new Collider("Left Fences", -gardenSize, 0, 0, 100, 50, gardenSize);
-    colliders.add(cl3);
-
-    Collider cl4 = new Collider("Right Fences", gardenSize, 0, 0, 100, 50, gardenSize);
-    colliders.add(cl4);
   }
 
   boolean checkCollision(PVector pos) {
@@ -66,5 +55,9 @@ class ColliderManager {
     }
 
     return false;
+  }
+  
+  void addCollider(Collider cl) {
+    colliders.add(cl);  
   }
 }

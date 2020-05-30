@@ -28,8 +28,9 @@ class Fireplace{
     endShape();
     
     pushMatrix();
-    translate(0, 0, -0.9998);
-    fireAnim.display(-0.3, 0.4, 0.6, 0.6, 10);
+    translate(0, 0, z + 0.001);
+    fireAnim.display(-FIRE_SIZE / 2, -FIRE_SIZE, FIRE_SIZE, FIRE_SIZE, 10);
+    
     popMatrix();
   }
 }

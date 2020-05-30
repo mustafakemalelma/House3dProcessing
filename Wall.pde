@@ -1,12 +1,30 @@
 class Wall {
   PImage wallImg, wallImg2;
 
+  Collider cl1, cl2, cl3, cl4, cl5;
+
   Wall() {
     wallImg = loadImage("wall.jpg");
     wallImg2 = loadImage("wall2.jpg");
+    
+    cl1 = new Collider("Back Wall", 0, -HOUSE_WIDTH, HOUSE_WIDTH, 1, 1);
+    colliderMng.addCollider(cl1);
+    
+    cl2 = new Collider("Left Wall", -HOUSE_WIDTH, 0, 1, 1, HOUSE_WIDTH);
+    colliderMng.addCollider(cl2);
+    
+    cl3 = new Collider("Right Wall", HOUSE_WIDTH, 0, 1, 1, HOUSE_WIDTH);
+    colliderMng.addCollider(cl3);
+    
+    float centerPoint = (HOUSE_WIDTH - DOOR_WIDTH) / 2;
+    cl4 = new Collider("Front Left Wall", -centerPoint - DOOR_WIDTH, HOUSE_WIDTH, centerPoint, 1, 1);
+    colliderMng.addCollider(cl4);
+    
+    cl5 = new Collider("Front Right Wall", centerPoint + DOOR_WIDTH, HOUSE_WIDTH, centerPoint, 1, 1);
+    colliderMng.addCollider(cl5);
   }
 
-  void drawWalls() {
+  void drawWalls() {    
     int w = wallImg.width * (int) HOUSE_WIDTH;
     int h = wallImg.height * (int) HOUSE_WIDTH;
     int w2 = wallImg.width * (int) HOUSE_WIDTH;

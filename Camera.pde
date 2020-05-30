@@ -1,6 +1,5 @@
 class Camera {
   PVector pos, center, dir;
-  float speed;
   float rotY = HALF_PI, lastX, distX;
 
   Camera(PVector startPos) {
@@ -11,21 +10,19 @@ class Camera {
 
     center = PVector.add(PVector.mult(dir, 300), pos);
     updateDir();
-    
-    speed = 5;
   }
 
   void process() {
     if (keyPressed) {
       if (keyCode == UP) {
-        PVector nextPos = PVector.add(pos, PVector.mult(dir, speed));
+        PVector nextPos = PVector.add(pos, PVector.mult(dir, CAMERA_SPEED));
         if(!colliderMng.checkCollision(nextPos))
-          pos.add(PVector.mult(dir, speed));
+          pos.add(PVector.mult(dir, CAMERA_SPEED));
       }
       if (keyCode == DOWN) {
-        PVector nextPos = PVector.add(pos, PVector.mult(dir, -speed));
+        PVector nextPos = PVector.add(pos, PVector.mult(dir, -CAMERA_SPEED));
         if(!colliderMng.checkCollision(nextPos))
-          pos.add(PVector.mult(dir, -speed));
+          pos.add(PVector.mult(dir, -CAMERA_SPEED));
       }
     }
     
